@@ -8,5 +8,7 @@ namespace Todos.Application.Contrats.GetTodos
 {
     public class GetTodosQuery
     {
+        public String Text { get; set; } = default!;
+
     }
 }
