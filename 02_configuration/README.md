@@ -17,7 +17,7 @@ Dans le fichier "appsettings.json" ajouter
 1. En utilisant IConfiguration 
 >>> Afficher la valeur "Title" dans la réponse 
 ```csharp
-app.MapGet("/", () => $"Hello World!{[]}");
+app.MapGet("/config", () => $"Hello World!{[]}");
 ```
 
 ## Ajout de fichier

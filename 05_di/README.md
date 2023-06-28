@@ -2,7 +2,6 @@
 
 Création d'une services 
 ```csharp
-
 > Créer le model suivant : 
 
 public record Todos(int Id, string Libelle) {}
@@ -14,24 +13,25 @@ public interface ITodoRepository
 }
 
 
-public class ReposiITodoRepository {
-
+public class TodoRepository {
+  public static List<Todos> _todos = 
 
 }
 
+
 public interface ITodosService {
-    
+    Task<Todos> GetTodos() 
 }
 ```
 
-> Créer l'implémenatation
+> Créer l'implémentation
 ```csharp
 public class TodosService : ITodosService {
 
-    public static List<Todos> _todos = 
-
 }
 ```
+
+
 
 
 
