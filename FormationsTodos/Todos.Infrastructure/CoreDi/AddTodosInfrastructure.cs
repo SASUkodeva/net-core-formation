@@ -9,4 +9,5 @@ namespace Todos.Infrastructure.CoreDi
     internal class AddTodosInfrastructure
     {
     }
+
 }
