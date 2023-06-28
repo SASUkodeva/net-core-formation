@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Todos.Core.Entities
 {
-    public class AuditableEntity : IAuditableEntity
+    public record AuditableEntity : IAuditableEntity
     {
         public DateTime UpdatedOn { get; set; }
 
