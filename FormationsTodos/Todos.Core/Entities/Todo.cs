@@ -7,7 +7,11 @@ using Todos.Core.Entities.Base;
 
 namespace Todos.Core.Entities
 {
-    public record Todo(int Id,string Libelle, int Statut) : EntityBase(Id) { }
+    public record Todo(int Id,string Libelle, int Statut, int UserId) : EntityBase(Id) { 
+
+
+        public virtual User User  {get;set;}
+    }
   
     
 }

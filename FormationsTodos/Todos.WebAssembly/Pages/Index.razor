@@ -1,0 +1,19 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+<button @onclick="Add" @onmouseenter="Add">AddItem @counter</button>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code {
+    public int counter { get; set; }
+
+    void Add()
+    {
+        counter += 1;
+    }
+}

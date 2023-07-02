@@ -24,20 +24,27 @@ dotnet --list-sdks
 dotnet new globaljson --sdk-version [7.0.304]
 > Vérification de la version 
 dotnet --version 
-dotnet new sln -o DotnetCore
+> 
+1. Création d'une solution "FormationsTodos"
 ```
-
 
 **!!!** Se position dans le répertoire de la solution
 
-1. Création d'un projet console
 
-2. Création d'un projet web (Vide)
+1. Création d'un projet Mvc "Todos.Mvc"
 
-3. Création d'un projet class
+2. Création d'un projet class "Todos.Core"
+
+3. Création d'un projet class "Todos.Application"
+
+4. Création d'un projet class "Todos.Infrastructure"
 
 
 ## Ajout chaque projet à la solution
 ```bash
 dotnet sln add [PROJECT_PATH]
 ```
+
+5. builder la solution
+
+6. Lancer la  solution
