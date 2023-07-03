@@ -3,18 +3,35 @@ using Todos.Application.Interfaces;
 
 namespace Todos.Mvc.Controllers
 {
-    public class TodoController : Controller
+    public class TodosController : Controller
     {
-        public TodoController(ITodosService todosService)
+        private readonly ITodosService _service;
+
+        public TodosController(ITodosService service)
         {
-            TodosService = todosService;
+        
+            this._service = service;
         }
 
         public ITodosService TodosService { get; }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var res= await _service.GetTodos(new Application.Contrats.GetTodos.GetTodosQuery());
+;            return View(res.Todos);
+
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            
+            var res = await _service.CreateTodo(new Application.Contrats.CreateTodo.CreateTodoCommand
+            {
+                Libelle   = "Libelel",
+                TagCategorie = new string[] { "TAG" }
+            }) ;
+            return Ok();
+
         }
     }
 }

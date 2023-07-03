@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Todos.Application.Interfaces;
+using Todos.Application.Services;
 
 namespace Todos.Application.ApplicationDI
 {
@@ -7,6 +9,7 @@ namespace Todos.Application.ApplicationDI
 
         public static IServiceCollection AddTodosApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<ITodosService, TodoService>();
             return services;
         }
     }

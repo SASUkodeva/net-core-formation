@@ -16,5 +16,7 @@ namespace Todos.Application.Contrats.GetTodos
     {
         public int Id { get; set; }
         public string Title { get; set; }
+
+        public String[] TagCategories { get; set; }
     }
 }

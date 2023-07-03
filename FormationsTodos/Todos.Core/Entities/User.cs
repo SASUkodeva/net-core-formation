@@ -7,7 +7,7 @@ using Todos.Core.Entities.Base;
 
 namespace Todos.Core.Entities
 {
-    public record User(int id, string Nom, string Prenom) : EntityBase(id)
+    public record User(int id, string Nom, string Prenom) : EntityBase
     {
     }
 }

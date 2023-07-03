@@ -1,0 +1,11 @@
+﻿@using Todos.Application.Contrats.GetTodos;
+@{
+   
+}
+@model List<TodoModel>
+
+
+    @foreach(var todo in Model) {
+
+        <>@todo.Id</>
+    }
