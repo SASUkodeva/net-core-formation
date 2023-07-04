@@ -1,4 +1,6 @@
 ﻿@page "/"
+@using Todos.ApiClient.Models;
+@inject ApiClient.Models.IClient _client
 
 <PageTitle>Index</PageTitle>
 
@@ -6,11 +8,43 @@
 <button @onclick="Add" @onmouseenter="Add">AddItem @counter</button>
 
 Welcome to your new app.
+<table>
+    <thead>
+        <tr>
+            <th>
+                #Id
+            </th>
+            <th>
+                Libelle
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var todo in todos)
+        {
+            <tr>
+                <td>
 
+
+                    @todo.Id
+                </td>
+                <td>
+                    @todo.Title
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code {
     public int counter { get; set; }
+
+    public List<TodoModel> todos;
+    protected override async Task OnInitializedAsync()
+    {
+        todos = (await _client.Todos_GetTodosAsync())?.ToList() ?? default!;
+    }
 
     void Add()
     {
