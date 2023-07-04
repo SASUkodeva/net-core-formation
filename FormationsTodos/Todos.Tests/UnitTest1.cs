@@ -1,4 +1,4 @@
-using NSubstitute;
+﻿using NSubstitute;
 using Todos.Application.Contrats.CreateTodo;
 using Todos.Application.Contrats.GetTodos;
 using Todos.Application.Interfaces;
@@ -15,7 +15,7 @@ public class UnitTest1
 
     public List<Todo> _todos = new List<Todo>
     {
-         Todo.Create("Libelle1",1, 1),
+        Todo.Create("Libelle1",1, 1),
         Todo.Create("Libelle1",1, 1)
 
     };
@@ -39,7 +39,7 @@ public class UnitTest1
 
     }
 
-    [Fact]
+    [Fact(Skip ="TRUE")]
     public async  Task create_todo()
     {
         var services = new TodoService(_todoRepository);

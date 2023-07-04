@@ -19,9 +19,9 @@ namespace Todos.Core.Entities
 
         public string Libelle { get; init; }
 
-        public int Statut { get; set; }
+        public int Statut { get; init; }
 
-        public int UserId { get; set; }
+        public int UserId { get; init; }
         public String[] TagCategories { get; set; }
         public virtual User User  {get;set;}
 

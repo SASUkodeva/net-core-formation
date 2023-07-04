@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Todos.Core.Entities.Base;
 
-namespace Todos.Core.Entities
+namespace Todos.Application.Contrats.CreateTodo
 {
-    public record User(string Nom, string Prenom) : EntityBase
+    public class CreateUserResponse
     {
-     
+        public int Id { get; set; }
     }
 }

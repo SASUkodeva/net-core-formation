@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Todos.Application.Contrats.CreateTodo
 {
-    public class CreateTodoResponseModel
-    {
-
-        public int Id { get; set; }
+    public class UpdateUserResponse
+    {   
     }
 }

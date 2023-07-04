@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Todos.Application.Contrats.CreateTodo
 {
+    /// <summary>
+    /// Command permettant de créer un todo
+    /// </summary>
     public class CreateTodoCommand
     {
         public String Libelle { get; set; }

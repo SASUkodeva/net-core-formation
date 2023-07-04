@@ -1,11 +1,18 @@
 ﻿@page "/"
+@using Microsoft.AspNetCore.SignalR.Client;
 @using Todos.ApiClient.Models;
 @inject ApiClient.Models.IClient _client
+@inject IConfiguration _configuration
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Ma liste de todos</PageTitle>
 
-<h1>Hello, world!</h1>
-<button @onclick="Add" @onmouseenter="Add">AddItem @counter</button>
+<div class="card">
+    <div class="card-title">Mes todos
+        <div class="float-end"><button @onclick="refresh">Refresh</button></div>
+    </div>
+</div>
+
+
 
 Welcome to your new app.
 <table>
@@ -38,14 +45,39 @@ Welcome to your new app.
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code {
+    private HubConnection? hubConnection;
+
+
+
+
+
     public int counter { get; set; }
 
     public List<TodoModel> todos;
     protected override async Task OnInitializedAsync()
     {
-        todos = (await _client.Todos_GetTodosAsync())?.ToList() ?? default!;
+
+        hubConnection = new HubConnectionBuilder()
+          .WithUrl(_configuration["UrlApi"] + "ws/Signalr")
+
+          .Build();
+
+
+        hubConnection.On("tupeuxrefresh", async () =>
+        {
+
+            await refresh();
+            await InvokeAsync(StateHasChanged);
+
+        });
+        await hubConnection.StartAsync();
+        await refresh();
     }
 
+    async Task refresh()
+    {
+        todos = (await _client.Todos_GetTodosAsync())?.ToList() ?? default!;
+    }
     void Add()
     {
         counter += 1;

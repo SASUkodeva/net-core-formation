@@ -10,6 +10,7 @@ namespace Todos.Application.ApplicationDI
         public static IServiceCollection AddTodosApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<ITodosService, TodoService>();
+            services.AddScoped<IUserService, UserService>();
             return services;
         }
     }

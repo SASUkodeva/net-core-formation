@@ -22,6 +22,9 @@ namespace Todos.Application.Services
 
         public async  Task<int> CreateTodo(CreateTodoCommand command)
         {
+
+        
+           
             var todo = Todo.Create(command.Libelle, 1, 1);
             todo = todo with { TagCategories = command.TagCategorie };
             await _todoRepository.Add(todo, "1");

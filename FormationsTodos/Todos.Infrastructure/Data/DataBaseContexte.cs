@@ -10,6 +10,8 @@ namespace Todos.Infrastructure.Data
 {
     internal class DataBaseContexte :DbContext
     {
+    //  Add-Migration Initial -Context DataBaseContexte -Project Todos.Infrastructure -StartupProject Todos.WebApi -Verbose
+
         public DataBaseContexte()
         {
                 

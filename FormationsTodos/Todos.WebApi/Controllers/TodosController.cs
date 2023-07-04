@@ -1,7 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Todos.Application.Contrats.CreateTodo;
 using Todos.Application.Contrats.GetTodos;
 using Todos.Application.Interfaces;
+using Todos.WebApi.SignalRHub;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Todos.WebApi.Controllers
@@ -10,19 +12,17 @@ namespace Todos.WebApi.Controllers
     [Route("[controller]")]
     public class TodosController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+       
 
-        private readonly ILogger<TodosController> _logger;
         private readonly ITodosService _service;
 
-        public TodosController(ITodosService service)
+        //Hub SignalR 
+        private readonly IHubContext<SignalRhub> _hub;
+        public TodosController(ITodosService service, IHubContext<SignalRhub> hub)
         {
 
             this._service = service;
-           
+            _hub = hub;
         }
 
         public ITodosService TodosService { get; }
@@ -38,7 +38,20 @@ namespace Todos.WebApi.Controllers
 
         [HttpPost("CreateTodo")]
         [ProducesResponseType(typeof(int), 200)]
-        public async Task<IActionResult> Create([FromBody]CreateTodoCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateTodoCommand command)
+        {
+
+            var res = await _service.CreateTodo(command);
+            await  _hub.Clients.Groups("ALL").SendAsync("tupeuxrefresh");
+            return Ok(res);
+
+        }
+
+
+        [HttpPost("UpdateTodo/{id}")]
+        [ProducesResponseType(typeof(int), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        public async Task<IActionResult> UpdateTodo([FromRoute] int id, [FromBody] CreateTodoCommand command)
         {
 
             var res = await _service.CreateTodo(command);
